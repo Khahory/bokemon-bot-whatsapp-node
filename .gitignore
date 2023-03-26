@@ -1,0 +1,5 @@
+.idea
+bot_sessions
+*.log
+package-lock.json
+node_modules
