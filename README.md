@@ -8,6 +8,12 @@ npm install
 npm start
 ```
 
+COMANDOS
+```
+hola
+buscar
+```
+
 ---
 ## Recursos
 - [📄 Documentación](https://bot-whatsapp.netlify.app/)
