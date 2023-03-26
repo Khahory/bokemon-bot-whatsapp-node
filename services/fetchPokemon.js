@@ -1,11 +1,6 @@
-function fetch_pokemon(pokemon_name = null, is_shiny = false) {
+function fetch_pokemon(pokemon_name = null) {
     return new Promise((resolve, reject) => {
-        let shiny_path = ``;
-
-        if (is_shiny)
-            shiny_path = `shiny/`;
-
-        const url = `https://pokeapi.co/api/v2/pokemon/${shiny_path}${pokemon_name}`;
+        const url = `https://pokeapi.co/api/v2/pokemon/${pokemon_name}`;
         fetch(url)
             .then(response => {
                 if (response.ok) {

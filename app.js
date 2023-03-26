@@ -8,12 +8,10 @@ const MockAdapter = require('@bot-whatsapp/database/mock')
 const fetch_pokemon = require('./services/fetchPokemon')
 
 
-const flowMain = addKeyword(['hola'])
-    .addAnswer('🙌 Hola, bienvenido a la *Bokedex*')
-    .addAnswer('🤖 Soy un bot por *Khahory* que te ayudara a encontrar tus pokemones')
-
 const flowBuscarPokemonShiny = addKeyword(['shiny'])
-    .addAnswer('Shiny?')
+    .addAnswer('Shiny?', null, async (ctx, {flowDynamic}) => {
+
+    })
 
 const flowBuscarPokemon = addKeyword(['buscar'])
     .addAnswer(`👀 Cual pokemon deseas buscar? (*SALIR*)`, {capture: true, sensitive: true}, async (ctx, {
@@ -41,11 +39,18 @@ const flowBuscarPokemon = addKeyword(['buscar'])
         } catch (error) {
             return fallBack();
         }
-    }, [flowBuscarPokemonShiny]);
+    });
 
+const flowMain = addKeyword(['hola'])
+    .addAnswer('🙌 Hola, bienvenido a la *Bokedex*')
+    .addAnswer('🤖 Soy un bot que te ayudara a encontrar tus pokemones')
+    .addAnswer([
+        '🔎 Para buscar un pokemon, escribe *buscar*',
+        '👋 Para salir de cualquier situacion, escribe *salir*'
+    ])
 const main = async () => {
     const adapterDB = new MockAdapter()
-    const adapterFlow = createFlow([flowMain, flowBuscarPokemon])
+    const adapterFlow = createFlow([flowMain, flowBuscarPokemon, flowBuscarPokemonShiny])
     const adapterProvider = createProvider(BaileysProvider)
 
     createBot({
