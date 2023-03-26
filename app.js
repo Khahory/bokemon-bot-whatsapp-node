@@ -8,15 +8,10 @@ const MockAdapter = require('@bot-whatsapp/database/mock')
 const fetch_pokemon = require('./services/fetchPokemon')
 
 
-const flowBuscarPokemonShiny = addKeyword(['shiny'])
-    .addAnswer('Shiny?', null, async (ctx, {flowDynamic}) => {
-
-    })
-
 const flowBuscarPokemon = addKeyword(['buscar'])
     .addAnswer(`👀 Cual pokemon deseas buscar? (*SALIR*)`, {capture: true, sensitive: true}, async (ctx, {
         flowDynamic,
-        fallBack
+        fallBack,
     }) => {
         const pokemon_name = ctx.body.toLowerCase();
 
@@ -50,7 +45,7 @@ const flowMain = addKeyword(['hola'])
     ])
 const main = async () => {
     const adapterDB = new MockAdapter()
-    const adapterFlow = createFlow([flowMain, flowBuscarPokemon, flowBuscarPokemonShiny])
+    const adapterFlow = createFlow([flowMain, flowBuscarPokemon])
     const adapterProvider = createProvider(BaileysProvider)
 
     createBot({
