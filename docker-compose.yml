@@ -1,0 +1,11 @@
+# camos a construir los contenedores de manera mas vacana
+
+#creado version
+version: '3.9'
+
+#creado servicio (o contenedor)
+services:
+  bot: # el ejecutable el Dockerfile que esta en root
+    build: .
+    ports:
+      - "4444:3000"
