@@ -36,7 +36,7 @@ const flowBuscarPokemon = addKeyword(['buscar'])
         }
     });
 
-const flowMain = addKeyword(['hola'])
+const flowMain = addKeyword(['pokemon'])
     .addAnswer('🙌 Hola, bienvenido a la *Bokedex*')
     .addAnswer('🤖 Soy un bot que te ayudara a encontrar tus pokemones')
     .addAnswer([
